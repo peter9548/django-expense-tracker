@@ -136,13 +136,13 @@ update the links below.
 
 ## Screenshots
 
-![Expense Tracker Dashboard](screenshots\Screenshot_29-10-2026_17472_127.0.0.1.jpeg)
+![Expense Tracker Dashboard](screenshots/Screenshot_29-10-2026_17472_127.0.0.1.jpeg)
 
-![Expense Tracker Screenshot 2](screenshots\Screenshot_29-10-2026_174649_127.0.0.1.jpeg)
+![Expense Tracker Screenshot 2](screenshots/Screenshot_29-10-2026_174649_127.0.0.1.jpeg)
 
-![Expense Tracker Screenshot 3](screenshots\Screenshot_29-10-2026_174718_127.0.0.1.jpeg)
+![Expense Tracker Screenshot 3](screenshots/Screenshot_29-10-2026_174718_127.0.0.1.jpeg)
 
-![Expense Tracker Screenshot 4](screenshots\Screenshot_29-10-2026_174728_127.0.0.1.jpeg)
+![Expense Tracker Screenshot 4](screenshots/Screenshot_29-10-2026_174728_127.0.0.1.jpeg)
 
 
 ## Important Notes
