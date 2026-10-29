@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Expense | Expense Tracker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 16px;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .update-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Edit Expense</h1>
+            <p class="subtitle">Update your expense details below.</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="title">Expense Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value="{{ expense.title }}"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount (₹)</label>
+                    <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        value="{{ expense.amount }}"
+                        step="0.01"
+                        min="0.01"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="Food"
+                            {% if expense.category == "Food" %}selected{% endif %}>
+                            Food
+                        </option>
+
+                        <option value="Transport"
+                            {% if expense.category == "Transport" %}selected{% endif %}>
+                            Transport
+                        </option>
+
+                        <option value="Shopping"
+                            {% if expense.category == "Shopping" %}selected{% endif %}>
+                            Shopping
+                        </option>
+
+                        <option value="Bills"
+                            {% if expense.category == "Bills" %}selected{% endif %}>
+                            Bills
+                        </option>
+
+                        <option value="Education"
+                            {% if expense.category == "Education" %}selected{% endif %}>
+                            Education
+                        </option>
+
+                        <option value="Health"
+                            {% if expense.category == "Health" %}selected{% endif %}>
+                            Health
+                        </option>
+
+                        <option value="Other"
+                            {% if expense.category == "Other" %}selected{% endif %}>
+                            Other
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        value="{{ expense.date|date:'Y-m-d' }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        placeholder="Optional details"
+                    >{{ expense.description|default_if_none:"" }}</textarea>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn update-btn">
+                        Update Expense
+                    </button>
+
+                    <a href="{% url 'expenses' %}" class="btn cancel-btn">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

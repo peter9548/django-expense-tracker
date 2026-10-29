@@ -1,0 +1,12 @@
+__pycache__/
+*.pycvenv/
+.venv/
+env/
+.env.*
+!.env.example
+media/
+.vscode/
+.idea/
+
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET

@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Expense Tracker</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Profile section */
+        .container {
+            max-width: 650px;
+            margin: 55px auto;
+            padding: 0 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #1d4ed8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .profile-header h1 {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .profile-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            font-size: 14px;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 16px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .profile-card {
+                padding: 24px 18px;
+            }
+
+            .profile-header h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h2>Expense Tracker</h2>
+
+        <div class="nav-links">
+            <a href="{% url 'expenses' %}">Dashboard</a>
+            <a href="{% url 'profile' %}">My Profile</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile-card">
+
+            <div class="profile-header">
+                <div class="avatar">
+                    {{ user.first_name|first|default:user.username|first|upper }}
+                </div>
+
+                <h1>
+                    {{ user.get_full_name|default:user.username }}
+                </h1>
+
+                <p>Your account information</p>
+            </div>
+
+            <h3 class="section-title">Personal Information</h3>
+
+            <div class="detail-row">
+                <span class="detail-label">Username</span>
+                <span class="detail-value">{{ user.username }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">First Name</span>
+                <span class="detail-value">
+                    {{ user.first_name|default:"Not provided" }}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Last Name</span>
+                <span class="detail-value">
+                    {{ user.last_name|default:"Not provided" }}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Email Address</span>
+                <span class="detail-value">
+                    {{ user.email|default:"Not provided" }}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Member Since</span>
+                <span class="detail-value">
+                    {{ user.date_joined|date:"d M Y" }}
+                </span>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'edit_profile' %}"
+                   class="btn btn-primary">
+                    Edit Profile
+                </a>
+
+                <a href="{% url 'change_password' %}"
+                   class="btn btn-secondary">
+                    Change Password
+                </a>
+            </div>
+
+            <a href="{% url 'expenses' %}" class="back-link">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
