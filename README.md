@@ -133,7 +133,7 @@ Open these URLs in your browser:
 Add screenshots of your running project to a `screenshots/` folder and
 update the links below.
 
-``` markdown
+
 ## Screenshots
 
 ![Expense Tracker Dashboard](screenshots\Screenshot_29-10-2026_17472_127.0.0.1.jpeg)
@@ -143,7 +143,7 @@ update the links below.
 ![Expense Tracker Screenshot 3](screenshots\Screenshot_29-10-2026_174718_127.0.0.1.jpeg)
 
 ![Expense Tracker Screenshot 4](screenshots\Screenshot_29-10-2026_174728_127.0.0.1.jpeg)
-```
+
 
 ## Important Notes
 
